@@ -1,0 +1,50 @@
+{
+  "Version": 1,
+  "Hash": "zat/lj1WamexM1iy9GpWr1PDzwR3ZknWrxkb6y4ganw=",
+  "Source": "PizzaShop.Domain",
+  "BasePath": "_content/PizzaShop.Domain",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [
+    {
+      "Identity": "R:\\ThreeTier-master\\PizzaShop.Domain\\obj\\Debug\\net7.0\\scopedcss\\bundle\\PizzaShop.Domain.styles.css",
+      "SourceId": "PizzaShop.Domain",
+      "SourceType": "Computed",
+      "ContentRoot": "R:\\ThreeTier-master\\PizzaShop.Domain\\obj\\Debug\\net7.0\\scopedcss\\bundle\\",
+      "BasePath": "_content/PizzaShop.Domain",
+      "RelativePath": "PizzaShop.Domain.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "R:\\ThreeTier-master\\PizzaShop.Domain\\obj\\Debug\\net7.0\\scopedcss\\bundle\\PizzaShop.Domain.styles.css"
+    },
+    {
+      "Identity": "R:\\ThreeTier-master\\PizzaShop.Domain\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\PizzaShop.Domain.bundle.scp.css",
+      "SourceId": "PizzaShop.Domain",
+      "SourceType": "Computed",
+      "ContentRoot": "R:\\ThreeTier-master\\PizzaShop.Domain\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\",
+      "BasePath": "_content/PizzaShop.Domain",
+      "RelativePath": "PizzaShop.Domain.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "R:\\ThreeTier-master\\PizzaShop.Domain\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\PizzaShop.Domain.bundle.scp.css"
+    }
+  ]
+}

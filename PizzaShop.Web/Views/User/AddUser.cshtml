@@ -1,0 +1,153 @@
+@model PizzaShop.Domain.ViewModels.UserModel
+
+    <!-- Main Content -->
+    <div class="container mt-4" id="main-content">
+        <nav class="navbar w-90 navbar-light bg-light">
+            <h3 class="text-primary">Add New User</h3>
+            <form class="form-inline">
+                <div class="d-flex">
+                    <div class="">
+                        <button class="btn btn-outline-secondary bg-light my-sm-0 rounded text-primary" type="submit">
+                            <a href="UserList.html" style="text-decoration: none;"> Back</a>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </nav>
+        <div class="form-control">
+            <form method="post" asp-action="AddUser">
+                <div class="row my-4">
+                    <div class="col">
+                        <input type="text" asp-for="FirstName" class="form-control" placeholder="First name" required>
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                        <input type="text" asp-for="LastName" class="form-control" placeholder="Last name" required>
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row my-4">
+                    <div class="col">
+                        <input type="text" asp-for="UserName" class="form-control" placeholder="User name" required>
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                     <div class="col">
+                     <select asp-for="RoleId" class="form-select">
+                        <option value="1">Admin</option>
+                        <option value="2">User</option>
+                     </select>
+                </div>
+                    </div>
+                </div>
+
+                <div class="row my-4">
+                    <div class="col">
+                        <input type="email" asp-for="Email" class="form-control" placeholder="Email" required>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                        <input type="password" asp-for="Password" class="form-control" placeholder="Password" required>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="upload-box w-100 mt-0 border border-secondary">
+                    <img src="~/images/download-from-cloud_icon-icons.com_54289.png" height="30" width="30"
+                        alt="">
+                    <div class="form-group">
+                        <input type="file" class="form-control-file" id="fileUpload">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <select asp-for="CountryID" id="countryDropdown" class="form-select col-12 col-lg-12"
+                            style="height: 40px;" aria-label="Default select example">
+                            <option value="">Select Country</option>
+                            @foreach (var country in Model.Countries)
+                            {
+                                <option value="@country.CountryId">@country.CountryName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select asp-for="StateID" id="stateDropdown" class="form-select col-12 col-lg-12"
+                            style="height: 40px;" aria-label="Default select example">
+                            <option value="">Select State</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select asp-for="CityID" id="cityDropdown" class="form-select col-12 col-lg-12"
+                            style="height: 40px;" aria-label="Default select example">
+                            <option value="">Select City</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <input type="text" asp-for="Zipcode" class="form-control" placeholder="Zipcode" required>
+                        <span asp-validation-for="Zipcode" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" asp-for="Address" class="form-control" placeholder="Address" required>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="tel" asp-for="PhoneNumber" class="form-control" placeholder="Phone">
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="button" class="btn btn-secondary">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("countryDropdown").addEventListener("change", function () {
+            var countryId = this.value;
+            var stateDropdown = document.getElementById("stateDropdown");
+            var cityDropdown = document.getElementById("cityDropdown");
+
+            stateDropdown.innerHTML = '<option value="">Select State</option>';
+            cityDropdown.innerHTML = '<option value="">Select City</option>';
+
+            if (countryId) {
+                fetch(`/User/GetStates?countryId=${countryId}`)
+                    .then(response => response.json())
+                    .then(states => {
+                        states.forEach(state => {
+                            var option = document.createElement("option");
+                            option.value = state.stateId;
+                            option.textContent = state.stateName;
+                            stateDropdown.appendChild(option);
+                        });
+                    });
+            }
+        });
+
+        document.getElementById("stateDropdown").addEventListener("change", function () {
+            var stateId = this.value;
+            var cityDropdown = document.getElementById("cityDropdown");
+
+            cityDropdown.innerHTML = '<option value="">Select City</option>';
+
+            if (stateId) {
+                fetch(`/User/GetCities?stateId=${stateId}`)
+                    .then(response => response.json())
+                    .then(cities => {
+                        cities.forEach(city => {
+                            var option = document.createElement("option");
+                            option.value = city.cityId;
+                            option.textContent = city.cityName;
+                            cityDropdown.appendChild(option);
+                        });
+                    });
+            }
+        });
+    </script>
+

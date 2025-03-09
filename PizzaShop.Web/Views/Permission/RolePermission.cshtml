@@ -1,0 +1,190 @@
+
+@{
+  ViewData["Title"] = "RolePermissions";
+  var roles = ViewBag.Roles as List<PizzaShop.Domain.ViewModels.RoleViewModel>;
+  var permissions = ViewBag.Permissions as List<PizzaShop.Domain.ViewModels.PermissionViewModel>;
+  var rolePermissions = ViewBag.RolePermissions as List<PizzaShop.Domain.ViewModels.RolePermissionViewModel>;
+}
+
+<div class="col-lg-10 ">
+  <div class="content shadow-lg p-3 mb-5 bg-white rounded mt-3">
+    <div class="d-flex mt-4 justify-content-between align-items-center">
+      <h1 class="user">Permissions</h1>
+      <div class="d-flex align-items-center rightside">
+        <a asp-controller="User" asp-action="UserList"><button type="button"
+            class="btn btn-outline-primary">Back</button></a>
+      </div>
+    </div>
+
+
+      <div class="table-responsive mt-4">
+        <div class="col-6">
+          <div class="form-floating">
+            <select class="form-select" id="role" name="role" onchange="loadRolePermissions()">
+              <option value="">Select Role</option>
+              @foreach (var role in roles)
+              {
+                <option value="@role.Id">@role.Name</option>
+              }
+            </select>
+            <label for="role">Role</label>
+          </div>
+        </div>
+      </div>
+
+     
+   <table class="table mt-4" id="permissionsTable">
+            <thead>
+                <tr>
+                    <th>Permission</th>
+                    <th>Can View</th>
+                    <th>Can Add/Edit</th>
+                    <th>Can Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var permission in permissions)
+                {
+                    <tr data-permission-id="@permission.Id">
+                        <td>@permission.Name</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input can-view" type="checkbox" role="switch">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input can-add-edit" type="checkbox" role="switch">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input can-delete" type="checkbox" role="switch">
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+     </div> 
+
+    <!-- buttons -->
+    <div class="d-flex justify-content-end p-2">
+       <button type="button" class="btn btn-primary me-2" onclick="saveRolePermissions()">Save</button>
+
+      <a asp-controller="Permissions" asp-action="Roles"><button type="submit"
+          class="btn btn-primary bg-btn">Cancel</button></a>
+    </div>
+
+<script>
+    $(document).ready(function () {
+        
+
+        $('#role').change(function () {
+            @* Role Dropdown Changed, Fetching Data... *@
+            loadRolePermissions();
+        });
+
+        //this will Ensure toggles remain applied after AJAX updates
+        applyBootstrapToggles();
+    });
+
+    function loadRolePermissions() {
+        var roleId = $('#role').val();
+        console.log("Fetching permissions for Role ID:", roleId);
+        
+        if (!roleId) {
+            $('#permissionsTable tbody').empty();
+            return;
+        }
+
+        $.ajax({
+            url: '/Permission/GetRolePermissions',
+            type: 'GET',
+            data: { roleId: roleId },
+            success: function (data) {
+                console.log("Data Received:", data);
+                $('#permissionsTable tbody').empty();
+
+                $.each(data, function (index, permission) {
+                    var row = `<tr data-permission-id="${permission.permissionId}">
+                        <td>${permission.name}</td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input can-view" type="checkbox" role="switch" ${permission.canView ? 'checked' : ''}>
+                            </div>
+                        </td> 
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input can-add-edit" type="checkbox" role="switch" ${permission.canAddEdit ? 'checked' : ''}>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input can-delete" type="checkbox" role="switch" ${permission.canDelete ? 'checked' : ''}>
+                            </div>
+                        </td>
+                    </tr>`;
+
+                    $('#permissionsTable tbody').append(row);
+                });
+
+                // Apply Bootstrap toggle switches after AJAX updates the DOM
+                applyBootstrapToggles();
+            },
+            error: function (xhr, status, error) {
+                console.error("Error Fetching Permissions:", error);
+            }
+        });
+    }
+
+    function saveRolePermissions() {
+        var roleId = $('#role').val();
+        console.log("Saving permissions for Role ID:", roleId);
+
+        if (!roleId) {
+            alert('Please select a role.');
+            return;
+        }
+
+        var permissions = [];
+        $('#permissionsTable tbody tr').each(function () {
+            var permissionId = $(this).data('permission-id');
+            permissions.push({
+                PermissionId: permissionId,
+                RoleId: parseInt(roleId),
+                CanView: $(this).find('.can-view').prop('checked'),
+                CanAddEdit: $(this).find('.can-add-edit').prop('checked'),
+                CanDelete: $(this).find('.can-delete').prop('checked')
+            });
+        });
+
+        console.log("Permissions Data Sent:", permissions);
+
+        $.ajax({
+            url: '/Permission/SaveRolePermissions',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(permissions),
+            success: function (response) {
+                console.log("Save Response:", response);
+                alert(response.success ? 'Permissions saved successfully!' : 'Failed to save permissions.');
+            },
+            error: function (xhr, status, error) {
+                console.error("Error Saving Permissions:", error);
+            }
+        });
+    }
+
+    function applyBootstrapToggles() {
+        // Ensure Bootstrap styling is applied to dynamically loaded elements
+        $('.form-check-input').each(function() {
+            $(this).attr('role', 'switch'); // Ensure toggle role is correctly set
+        });
+    }
+</script>
+
+  </div>
+</div>
+
+

@@ -1,0 +1,159 @@
+@model PizzaShop.Domain.ViewModels.EditUserModel
+
+<div class="container mt-4" id="main-content">
+    <nav class="navbar w-90 navbar-light bg-light">
+        <h3 class="text-primary">Edit User</h3>
+        <form class="form-inline">
+            <div class="d-flex">
+                <div>
+                    <a href="@Url.Action("UserList")"
+                        class="btn btn-outline-secondary bg-light my-sm-0 rounded text-primary">Back</a>
+                </div>
+            </div>
+        </form>
+    </nav>
+
+    <div class="form-control">
+        <form method="post" asp-action="EditUser">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="row my-4">
+                <div class="col">
+                    <input type="text" asp-for="FirstName" class="form-control" placeholder="First Name" required>
+                </div>
+                <div class="col">
+                    <input type="text" asp-for="LastName" class="form-control" placeholder="Last Name" required>
+                </div>
+            </div>
+
+            <div class="row my-4">
+                <div class="col">
+                    <input type="text" asp-for="UserName" class="form-control" placeholder="User Name" required>
+                </div>
+                <div class="col">
+                    <select asp-for="RoleId" class="form-select">
+                        <option value="1">Admin</option>
+                        <option value="2">User</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row my-4">
+                <div class="col">
+                    <input type="email" asp-for="Email" class="form-control" placeholder="Email" required>
+                </div>
+                <div class="col">
+                    <input type="password" asp-for="Password" class="form-control" placeholder="Password" required>
+                </div>
+            </div>
+
+              <div class="upload-box w-100 mt-0 border border-secondary">
+                    <img src="~/images/download-from-cloud_icon-icons.com_54289.png" height="30" width="30"
+                        alt="">
+                    <div class="form-group">
+                        <input type="file" class="form-control-file" id="fileUpload">
+                    </div>
+                </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <select asp-for="CountryID" id="countryDropdown" class="form-select">
+                        <option value="">Select Country</option>
+                        @if (Model.Countries != null)
+                        {
+                            @foreach (var country in Model.Countries)
+                            {
+                                <option value="@country.CountryId">@country.CountryName</option>
+                            }
+                        }
+                    </select>
+
+                </div>
+                <div class="col-md-4">
+                    <select asp-for="StateID" id="stateDropdown" class="form-select">
+                        <option value="">Select State</option>
+                        @if (Model.States != null)
+                        {
+                            @foreach (var state in Model.States)
+                            {
+                                <option value="@state.StateId">@state.StateName</option>
+                            }
+                        }
+                    </select>
+
+                </div>
+                <div class="col-md-4">
+                    <select asp-for="CityID" id="cityDropdown" class="form-select">
+                        <option value="">Select City</option>
+                        @if (Model.Cities != null)
+                        {
+                            @foreach (var city in Model.Cities)
+                            {
+                                <option value="@city.CityId">@city.CityName</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <input type="text" asp-for="Zipcode" class="form-control" placeholder="Zipcode">
+                </div>
+                <div class="col-md-4">
+                    <input type="text" asp-for="Address" class="form-control" placeholder="Address">
+                </div>
+                <div class="col-md-4">
+                    <input type="tel" asp-for="Phone" class="form-control" placeholder="Phone">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update User</button>
+            <a href="@Url.Action("UserList")" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById("countryDropdown").addEventListener("change", function () {
+        var countryId = this.value;
+        var stateDropdown = document.getElementById("stateDropdown");
+        var cityDropdown = document.getElementById("cityDropdown");
+
+        stateDropdown.innerHTML = '<option value="">Select State</option>';
+        cityDropdown.innerHTML = '<option value="">Select City</option>';
+
+        if (countryId) {
+            fetch('/User/GetStates?countryId=' + countryId)
+                .then(response => response.json())
+                .then(states => {
+                    states.forEach(state => {
+                        var option = document.createElement("option");
+                        option.value = state.stateId;
+                        option.textContent = state.stateName;
+                        stateDropdown.appendChild(option);
+                    });
+                });
+        }
+    });
+
+    document.getElementById("stateDropdown").addEventListener("change", function () {
+        var stateId = this.value;
+        var cityDropdown = document.getElementById("cityDropdown");
+
+        cityDropdown.innerHTML = '<option value="">Select City</option>';
+
+        if (stateId) {
+            fetch('/User/GetCities?stateId=' + stateId)
+                .then(response => response.json())
+                .then(cities => {
+                    cities.forEach(city => {
+                        var option = document.createElement("option");
+                        option.value = city.cityId;
+                        option.textContent = city.cityName;
+                        cityDropdown.appendChild(option);
+                    });
+                });
+        }
+    });
+</script>
