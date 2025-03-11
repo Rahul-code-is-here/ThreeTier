@@ -196,3 +196,4 @@ R:\ThreeTier-master\PizzaShop.Web\obj\Debug\net7.0\refint\PizzaShop.Web.dll
 R:\ThreeTier-master\PizzaShop.Web\obj\Debug\net7.0\PizzaShop.Web.pdb
 R:\ThreeTier-master\PizzaShop.Web\obj\Debug\net7.0\PizzaShop.Web.genruntimeconfig.cache
 R:\ThreeTier-master\PizzaShop.Web\obj\Debug\net7.0\ref\PizzaShop.Web.dll
+R:\ThreeTier-master\PizzaShop.Web\obj\Debug\net7.0\PizzaShop.Web.sourcelink.json

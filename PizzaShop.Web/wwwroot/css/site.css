@@ -26,6 +26,8 @@ body {
   height: 100vh;
 }
 
+
+
 @media (max-width: 768px) {
   .image-half {
       height: 50vh;
@@ -51,7 +53,7 @@ body {
 
 
 .offcanvas.show~#main-content {
-  margin-left: 250px;
+  margin-left: 220px;
 }
 
 .offcanvas-backdrop.show {
@@ -383,7 +385,51 @@ Label the data
 
 
 
-.form-check-input:checked {
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+
+
+
+
+/*extra changes in ui */  
+body {
+  background-color: #f2f2f2;
+
 }
+
+
+
+
+.navbar-color {
+  background-color: #0066a7 !important;
+}
+
+
+
+
+/* .offcanvas-body.offcanvas-header{
+    width: 300px;
+} */
+
+
+.sidebar-name {
+  color: #7e8696;
+}
+
+
+.white-icon {
+  color: #7e8696 !important;
+}
+
+.sidebarlist-hover:hover {
+  background-color: #e9eaeb;
+}
+
+.blue-color {
+  color: #0066a7;
+}
+
+.offcanvas-backdrop.show {
+  display: none;
+}
+
+
+/*  */

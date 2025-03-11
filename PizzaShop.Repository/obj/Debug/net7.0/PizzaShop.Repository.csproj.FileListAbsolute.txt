@@ -61,3 +61,4 @@ R:\ThreeTier-master\PizzaShop.Repository\obj\Debug\net7.0\PizzaShop.Repository.d
 R:\ThreeTier-master\PizzaShop.Repository\obj\Debug\net7.0\refint\PizzaShop.Repository.dll
 R:\ThreeTier-master\PizzaShop.Repository\obj\Debug\net7.0\PizzaShop.Repository.pdb
 R:\ThreeTier-master\PizzaShop.Repository\obj\Debug\net7.0\ref\PizzaShop.Repository.dll
+R:\ThreeTier-master\PizzaShop.Repository\obj\Debug\net7.0\PizzaShop.Repository.sourcelink.json

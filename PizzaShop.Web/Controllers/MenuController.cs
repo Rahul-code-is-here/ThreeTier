@@ -200,8 +200,14 @@ namespace PizzaShop.Web.Controllers
         {
             await SetUserProfileInViewBag();
 
-            var categories = await _categoryService.GetCategoriesAsync();
-            return View(categories);
+            await SetUserProfileInViewBag();
+
+            var model = new MenuViewModel
+            {
+                Categories = await _categoryService.GetCategoriesAsync(),
+                ModifierGroups = await _categoryService.GetModifierAsync()
+            };
+            return View(model);
         }
 
         [HttpPost]

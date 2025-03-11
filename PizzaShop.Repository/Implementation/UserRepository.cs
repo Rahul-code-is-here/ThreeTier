@@ -26,21 +26,21 @@ namespace PizzaShop.Repository.Implementation
             return _context.Users.FirstOrDefault(predicate);
         }
 
-        public async Task<User> GetEmailAndPassword(string email, string password)
-        {
-            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
-        }
-        // password:33333333 for rahulchauhanmalnath@gmail.com
-
         // public async Task<User> GetEmailAndPassword(string email, string password)
         // {
-        //     var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
-        //     if (user != null && BCrypt.Net.BCrypt.Verify(password, user.Password))
-        //     {
-        //         return user;
-        //     }
-        //     return null;
+        //     return await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
         // }
+        // password:33333333 for rahulchauhanmalnath@gmail.com
+
+        public async Task<User> GetEmailAndPassword(string email, string password)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (user != null && BCrypt.Net.BCrypt.Verify(password, user.Password))
+            {
+                return user;
+            }
+            return null;
+        }
 
         public async Task<User> GetUserByEmail(string email)
         {

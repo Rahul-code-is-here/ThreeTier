@@ -22,6 +22,11 @@ namespace PizzaShop.Repository.Implementations
             return await _context.Categories.Where(c => !c.IsDeleted).ToListAsync();
         }
 
+        public async Task<List<Modifiergroup>> GetModifierAsync()
+        {
+            return await _context.Modifiergroups.Where(m => !m.IsDeleted).ToListAsync();
+        }
+
         public async Task AddCategoryAsync(Category category)
         {
             if (category == null) throw new ArgumentNullException(nameof(category));

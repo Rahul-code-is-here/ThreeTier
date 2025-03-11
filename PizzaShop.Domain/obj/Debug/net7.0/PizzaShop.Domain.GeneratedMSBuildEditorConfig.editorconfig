@@ -9,13 +9,13 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PizzaShop.Domain
 build_property.RootNamespace = PizzaShop.Domain
-build_property.ProjectDir = r:\ThreeTier-master\PizzaShop.Domain\
+build_property.ProjectDir = R:\ThreeTier-master\PizzaShop.Domain\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = r:\ThreeTier-master\PizzaShop.Domain
+build_property.MSBuildProjectDirectory = R:\ThreeTier-master\PizzaShop.Domain
 build_property._RazorSourceGeneratorDebug = 
 
 [R:/ThreeTier-master/PizzaShop.Domain/Pages/Error.cshtml]

@@ -1,10 +1,9 @@
-
 @model List<PizzaShop.Domain.ViewModels.UserListModel>
 
 <!-- Dropdown for selecting page size -->
-<div class="d-flex justify-content-end mt-3">
+@* <div class="d-flex justify-content-end ">
     <!-- Search Bar -->
-    <div class="d-flex justify-content-between mt-3">
+    <div class="d-flex justify-content-between ">
         <form method="get" action="@Url.Action("UserList")">
             <input type="text" name="searchQuery" value="@ViewBag.SearchQuery" placeholder="Search users..."
                 class="form-control d-inline-block w-auto">
@@ -14,6 +13,22 @@
             Add User
         </a>
     </div>
+</div> *@
+<div class="d-flex mt-3 p-3 justify-content-between">
+    <div class="h1 text-primary">Users</div>
+    <div class="d-flex">
+        <form method="get" action="@Url.Action("UserList")" class="d-flex">
+            <div class="form-group position-relative ">
+                <input type="text" name="searchQuery" value="@ViewBag.SearchQuery" placeholder="Search users..."
+                    class="form-control d-inline-block w-auto">
+
+                <button type="submit" class="search-icon border-0 bg-transparent">
+                    <img src="~/images/icons/search.svg" alt="">
+                </button>
+            </div>
+        </form>
+        <div><a class="btn navbar-color text-white" asp-action="AddUser" asp-controller="User">+Add User</a></div>
+    </div>
 </div>
 
 <table class="table table-responsive table-striped mt-3">
@@ -21,38 +36,46 @@
         <tr>
             <th>
                 Name
-                <a href="@Url.Action("UserList", new { sortBy = "Name", sortOrder = "asc", pageNumber = ViewBag.CurrentPage, pageSize = ViewBag.PageSize, searchQuery = ViewBag.SearchQuery })">
-                    ▲
+                <a class="text-dark"
+                    href="@Url.Action("UserList", new { sortBy = "Name", sortOrder = "asc", pageNumber = ViewBag.CurrentPage, pageSize = ViewBag.PageSize, searchQuery = ViewBag.SearchQuery })">
+                    ↑
                 </a>
-                <a href="@Url.Action("UserList", new { sortBy = "Name", sortOrder = "desc", pageNumber = ViewBag.CurrentPage, pageSize = ViewBag.PageSize, searchQuery = ViewBag.SearchQuery })">
-                    ▼
+                <a class="text-dark"
+                    href="@Url.Action("UserList", new { sortBy = "Name", sortOrder = "desc", pageNumber = ViewBag.CurrentPage, pageSize = ViewBag.PageSize, searchQuery = ViewBag.SearchQuery })">
+                    ↓
                 </a>
             </th>
             <th>
                 Email
-                <a href="@Url.Action("UserList", new { sortBy = "Email", sortOrder = "asc", pageNumber = ViewBag.CurrentPage, pageSize = ViewBag.PageSize, searchQuery = ViewBag.SearchQuery })">
-                    ▲
+                <a class="text-dark"
+                    href="@Url.Action("UserList", new { sortBy = "Email", sortOrder = "asc", pageNumber = ViewBag.CurrentPage, pageSize = ViewBag.PageSize, searchQuery = ViewBag.SearchQuery })">
+                    ↑
                 </a>
-                <a href="@Url.Action("UserList", new { sortBy = "Email", sortOrder = "desc", pageNumber = ViewBag.CurrentPage, pageSize = ViewBag.PageSize, searchQuery = ViewBag.SearchQuery })">
-                    ▼
+                <a class="text-dark"
+                    href="@Url.Action("UserList", new { sortBy = "Email", sortOrder = "desc", pageNumber = ViewBag.CurrentPage, pageSize = ViewBag.PageSize, searchQuery = ViewBag.SearchQuery })">
+                    ↓
                 </a>
             </th>
             <th>
                 Phone
-                <a href="@Url.Action("UserList", new { sortBy = "Phone", sortOrder = "asc", pageNumber = ViewBag.CurrentPage, pageSize = ViewBag.PageSize, searchQuery = ViewBag.SearchQuery })">
-                    ▲
+                <a class="text-dark"
+                    href="@Url.Action("UserList", new { sortBy = "Phone", sortOrder = "asc", pageNumber = ViewBag.CurrentPage, pageSize = ViewBag.PageSize, searchQuery = ViewBag.SearchQuery })">
+                    ↑
                 </a>
-                <a href="@Url.Action("UserList", new { sortBy = "Phone", sortOrder = "desc", pageNumber = ViewBag.CurrentPage, pageSize = ViewBag.PageSize, searchQuery = ViewBag.SearchQuery })">
-                    ▼
+                <a class="text-dark"
+                    href="@Url.Action("UserList", new { sortBy = "Phone", sortOrder = "desc", pageNumber = ViewBag.CurrentPage, pageSize = ViewBag.PageSize, searchQuery = ViewBag.SearchQuery })">
+                    ↓
                 </a>
             </th>
             <th>
                 Role
-                <a href="@Url.Action("UserList", new { sortBy = "Role", sortOrder = "asc", pageNumber = ViewBag.CurrentPage, pageSize = ViewBag.PageSize, searchQuery = ViewBag.SearchQuery })">
-                    ▲
+                <a class="text-dark"
+                    href="@Url.Action("UserList", new { sortBy = "Role", sortOrder = "asc", pageNumber = ViewBag.CurrentPage, pageSize = ViewBag.PageSize, searchQuery = ViewBag.SearchQuery })">
+                    ↑
                 </a>
-                <a href="@Url.Action("UserList", new { sortBy = "Role", sortOrder = "desc", pageNumber = ViewBag.CurrentPage, pageSize = ViewBag.PageSize, searchQuery = ViewBag.SearchQuery })">
-                    ▼
+                <a class="text-dark"
+                    href="@Url.Action("UserList", new { sortBy = "Role", sortOrder = "desc", pageNumber = ViewBag.CurrentPage, pageSize = ViewBag.PageSize, searchQuery = ViewBag.SearchQuery })">
+                    ↓
                 </a>
             </th>
             <th>Status</th>

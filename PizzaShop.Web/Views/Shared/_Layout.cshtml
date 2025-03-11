@@ -18,7 +18,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-color">
     <div class="container-fluid">
       <!-- Sidebar Toggle Button -->
       <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
@@ -27,7 +27,34 @@
       </button>
 
       <!-- Profile Dropdown -->
-      <div class="dropdown">
+      <div class="btn-group">
+        <img class=" dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" width="35"
+          src="~/images/Default_pfp.svg.png" alt="">
+        <ul class="dropdown-menu dropdown-menu-end ">
+          <li><a class="dropdown-item d-flex align-items-center" href="#">
+              <img class="me-2" width="25" src="/images/Default_pfp.svg.png" alt="">
+              <p class="m-0">@ViewBag.UserName</p>
+            </a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item d-flex align-items-center" href="/User/UpdateProfile">
+              <img class="me-2 dashboard-icon" height="24" width="24" src="/images/Default_pfp.svg.png" alt="">
+              <p class="m-0">My profile</p>
+            </a></li>
+          <li><a class="dropdown-item d-flex align-items-center" href="/Login/ChangePassword">
+              <img class="dashboard-icon me-1" src="~/images/icons/arrow-clockwise.svg" alt="">
+              <p class="m-0">Change Password</p>
+            </a></li>
+          <li><a class="dropdown-item d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <div class="d-flex">
+                <img class="dashboard-icon me-1" src="~/images/icons/box-arrow-right.svg" alt="">
+                <p class="m-0" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</p>
+              </div>
+            </a></li>
+        </ul>
+      </div>
+      @* <div class="dropdown">
         <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           <img width="35" src="/images/@ViewBag.UserImage" alt="">
         </button>
@@ -58,18 +85,102 @@
             </button>
           </li>
         </ul>
-      </div>
+      </div> *@
     </div>
   </nav>
 
   <!-- Sidebar -->
-  <div class="offcanvas offcanvas-start bg-light" style="width: 233px;" id="sidebar">
+  <div class="offcanvas show offcanvas-start bg-light" style="width: 233px;" id="sidebar" data-bs-scroll="true"
+    data-bs-backdrop="false">
     <div class="offcanvas-header">
-      <img src="/images/logos/pizzashop_logo.png" height="38px" width="38px" alt="">
-      <h5 class="offcanvas-title ms-2">PIZZASHOP</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      <div class="d-flex justify-content-center">
+        <img class="img-fluid w-50 shop-logo" src="~/images/logos/pizzashop_logo.png" alt="">
+        <div class="ms-2 h6 text-center align-item-center shop-name" style="align-content: center;">
+          <strong>PIZZASHOP</strong>
+        </div>
+        <div><button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+      </div>
+
     </div>
     <div class="offcanvas-body">
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2 sidebarlist-hover"><a class="nav-link" href="/Home/Dashboard">
+            <div class="d-flex">
+              <div>
+                <img class="dashboard-icon" src="~/images/icons/border-all.svg" alt="">
+              </div>
+
+              <div class="sidebar-name ms-2"><strong>Dashboard</strong></div>
+            </div>
+          </a></li>
+
+        <li class="nav-item mb-2 sidebarlist-hover"><a class="nav-link active" href="/User/UserList">
+            <div class="d-flex">
+              <div>
+                <img class="dashboard-icon" src="~/images/icons/people.svg" alt="">
+              </div>
+
+              <div class="sidebar-name ms-2"><strong>User</strong></div>
+            </div>
+          </a></li>
+
+        <li class="nav-item mb-2 sidebarlist-hover"><a class="nav-link" href="/Permission/Role">
+            <div class="d-flex">
+              <div>
+                <img class="dashboard-icon" src="~/images/icons/person-gear.svg" alt="">
+              </div>
+
+              <div class="sidebar-name ms-2"><strong>Role and Permission</strong></div>
+            </div>
+          </a></li>
+        <li class="nav-item mb-2 sidebarlist-hover"><a class="nav-link" href="/Menu/Menu">
+            <div class="d-flex">
+              <div>
+                <img class="dashboard-icon" src="~/images/icons/clipboard.svg" alt="">
+              </div>
+
+              <div class="sidebar-name ms-2"><strong>Menu</strong></div>
+            </div>
+          </a></li>
+        <li class="nav-item mb-2 sidebarlist-hover"><a class="nav-link" href="#">
+            <div class="d-flex">
+              <div>
+                <img class="dashboard-icon" src="~/images/icons/square.svg" alt="">
+              </div>
+
+              <div class="sidebar-name ms-2"><strong>Table And Section</strong></div>
+            </div>
+          </a></li>
+        <li class="nav-item mb-2 sidebarlist-hover"><a class="nav-link" href="#">
+            <div class="d-flex">
+              <div>
+                <img class="dashboard-icon" src="~/images/icons/cash-coin.svg" alt="">
+              </div>
+
+              <div class="sidebar-name ms-2"><strong>Taxs And Fees</strong></div>
+            </div>
+          </a></li>
+        <li class="nav-item mb-2 sidebarlist-hover"><a class="nav-link" href="#">
+            <div class="d-flex">
+              <div>
+                <img class="dashboard-icon" src="~/images/icons/clipboard-check.svg" alt="">
+              </div>
+              <div class="sidebar-name ms-2"><strong>Oreders</strong></div>
+            </div>
+          </a></li>
+        <li class="nav-item mb-2 sidebarlist-hover"><a class="nav-link" href="#">
+            <div class="d-flex">
+              <div>
+                <img class="dashboard-icon" src="~/images/icons/person-rolodex.svg" alt="">
+              </div>
+
+              <div class="sidebar-name ms-2"><strong>Customers</strong></div>
+            </div>
+          </a></li>
+      </ul>
+    </div>
+    @* <div class="offcanvas-body">
       <ul class="nav flex-column">
         <li class="nav-item mt-2">
           <a class="nav-link text-danger d-flex align-items-center" href="/Home/Dashboard">
@@ -123,7 +234,7 @@
           </a>
         </li>
       </ul>
-    </div>
+    </div> *@
   </div>
 
   <!-- Main Content -->

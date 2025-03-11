@@ -108,13 +108,13 @@ namespace PizzaShop.Service.Implementaion
         public async Task<bool> ChangePasswordAsync(string email, ChangePasswordModel model)
         {
             var user = await _userRepository.GetUserByEmail(email);
-            if (!BCrypt.Net.BCrypt.Verify(model.CurrentPassword, user.Password))
-            // if (user == null || user.Password != model.CurrentPassword)
+            // if (!BCrypt.Net.BCrypt.Verify(model.CurrentPassword, user.Password))
+            if (user == null || user.Password != model.CurrentPassword)
             {
                 return false;
             }
-             
-              user.Password = BCrypt.Net.BCrypt.HashPassword(model.NewPassword);
+
+            user.Password = BCrypt.Net.BCrypt.HashPassword(model.NewPassword);
             // user.Password = model.NewPassword;
             return await _userRepository.UpdateUserAsync(user);
         }
@@ -159,7 +159,7 @@ namespace PizzaShop.Service.Implementaion
         public string GenerateJwtToken(User user, bool rememberMe)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("dhfdjnfbvdkjcndskfhjuiejedhk#4243hdbdjcnsdsfregrefeds3rewsdsfdssdfsdfsskoik"); 
+            var key = Encoding.ASCII.GetBytes("dhfdjnfbvdkjcndskfhjuiejedhk#4243hdbdjcnsdsfregrefeds3rewsdsfdssdfsdfsskoik");
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[]

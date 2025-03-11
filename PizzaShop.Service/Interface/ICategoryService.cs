@@ -9,6 +9,8 @@ namespace PizzaShop.Repository.Interfaces
     {
         Task<List<Category>> GetCategoriesAsync();
 
+        Task<List<Modifiergroup>> GetModifierAsync();
+
         Task AddCategoryAsync(Category category);
 
         Task UpdateCategoryAsync(Category category);

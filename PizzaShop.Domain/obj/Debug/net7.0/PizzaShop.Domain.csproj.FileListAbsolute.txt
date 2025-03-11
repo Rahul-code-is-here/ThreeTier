@@ -130,3 +130,4 @@ R:\ThreeTier-master\PizzaShop.Domain\obj\Debug\net7.0\refint\PizzaShop.Domain.dl
 R:\ThreeTier-master\PizzaShop.Domain\obj\Debug\net7.0\PizzaShop.Domain.pdb
 R:\ThreeTier-master\PizzaShop.Domain\obj\Debug\net7.0\PizzaShop.Domain.genruntimeconfig.cache
 R:\ThreeTier-master\PizzaShop.Domain\obj\Debug\net7.0\ref\PizzaShop.Domain.dll
+R:\ThreeTier-master\PizzaShop.Domain\obj\Debug\net7.0\PizzaShop.Domain.sourcelink.json

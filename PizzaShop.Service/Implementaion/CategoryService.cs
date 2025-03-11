@@ -19,6 +19,11 @@ namespace PizzaShop.Services.Implementations
             _categoryRepository = categoryRepository;
 
         }
+
+        public async Task<List<Modifiergroup>> GetModifierAsync()
+        {
+            return await _categoryRepository.GetModifierAsync();
+        }
         public async Task<List<Category>> GetCategoriesAsync()
         {
             return await _categoryRepository.GetCategoriesAsync();

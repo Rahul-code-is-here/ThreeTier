@@ -67,3 +67,4 @@ R:\ThreeTier-master\PizzaShop.Service\obj\Debug\net7.0\PizzaShop.Service.dll
 R:\ThreeTier-master\PizzaShop.Service\obj\Debug\net7.0\refint\PizzaShop.Service.dll
 R:\ThreeTier-master\PizzaShop.Service\obj\Debug\net7.0\PizzaShop.Service.pdb
 R:\ThreeTier-master\PizzaShop.Service\obj\Debug\net7.0\ref\PizzaShop.Service.dll
+R:\ThreeTier-master\PizzaShop.Service\obj\Debug\net7.0\PizzaShop.Service.sourcelink.json
